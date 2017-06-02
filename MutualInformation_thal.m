@@ -1,34 +1,14 @@
-function [MI,Entropy,NoiseEntropy] = MutualInformation_thal(FirstCorr, Nrep, bins, Nbins, pfail, pspont,X)
+function [MI,Entropy,NoiseEntropy] = MutualInformation_thal(FirstCorr, bins, Nbins,Y)
 %% Parameters
 
-% Last massive change: 26.05.2017
+% Last massive change: 2.06.2017
 
 % Sim         = 0;               % Determine if the results of the simulation are used (1)
 % RandomData  = 1;               % Determine if the random generate data are used (1)
 % FirstCorr   = 0;               % Determine if the First Correction is applied (1) or not (0)
-
-%bins    = 3;                % ms
-%freq    = 20;               % Hz
 fracs   = 1:1:5;            % fractions of the dataset to test in the first correction
 Nsmpl   = 30;               % #samples for averaging
 Words   = [1:10];           % word lengths to compute
-%pfail   = 0.7;              % Probability that a spike fails being transmitted
-%pspont  = 4*0.07/(1000*3);  % Probability that a spike is spontaneously generated (From non-spike or spike not transmitted)
-
-
-
-
-%% Calculation with Thalamic like data
-
-Y       = zeros(Nrep,Nbins) > 1;
-
-Ydel    = rand(Nrep,Nbins) < (1-pfail);
-Yadd    = rand(Nrep,Nbins) < pspont;
-
-for i = 1:1:Nrep
-    Y(i,:) = X.*Ydel(i,:)+Yadd(i,:);
-end
-
 
 %% Corrections for the Entropy
 

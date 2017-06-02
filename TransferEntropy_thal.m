@@ -1,4 +1,4 @@
-function [TEin_out_mean, TEout_in_mean, STDin_out, STDout_in] = TransferEntropy_thal(Nrep,Nbins,bins,pfail,pspont,wordlength,X)
+function [TEin_out_mean, TEout_in_mean, STDin_out, STDout_in] = TransferEntropy_thal(bins,wordlength,X,Y)
 
 %parameter
 nMean   = 50;                   % Number of calculation of TE before taking the mean
@@ -9,10 +9,6 @@ TEout_in     = zeros(1,nMean);         % Transfer entropy from output to input
 
     
 for j = 1:nMean
-    
-    Ydel    = rand(1,Nbins*Nrep) < (1-pfail);
-    Yadd    = rand(1,Nbins*Nrep) < pspont;
-    Y       = X.*Ydel+Yadd;
 
     %Calculate tranfer entropy
     trains                  = [X;Y];
